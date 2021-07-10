@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  firstname: MyString
+  familyname: MyString
+  kyc_approved: false
+  agreement: false
+  privacy_agr: false
+  eth_adress: MyString
+  cont_amount: 1
+  eth_tx: MyString
+  user: one
+
+two:
+  firstname: MyString
+  familyname: MyString
+  kyc_approved: false
+  agreement: false
+  privacy_agr: false
+  eth_adress: MyString
+  cont_amount: 1
+  eth_tx: MyString
+  user: two

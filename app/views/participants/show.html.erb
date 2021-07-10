@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Firstname:</strong>
+  <%= @participant.firstname %>
+</p>
+
+<p>
+  <strong>Familyname:</strong>
+  <%= @participant.familyname %>
+</p>
+
+<p>
+  <strong>Kyc approved:</strong>
+  <%= @participant.kyc_approved %>
+</p>
+
+<p>
+  <strong>Agreement:</strong>
+  <%= @participant.agreement %>
+</p>
+
+<p>
+  <strong>Privacy agr:</strong>
+  <%= @participant.privacy_agr %>
+</p>
+
+<p>
+  <strong>Eth adress:</strong>
+  <%= @participant.eth_adress %>
+</p>
+
+<p>
+  <strong>Cont amount:</strong>
+  <%= @participant.cont_amount %>
+</p>
+
+<p>
+  <strong>Eth tx:</strong>
+  <%= @participant.eth_tx %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @participant.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_participant_path(@participant) %> |
+<%= link_to 'Back', participants_path %>
