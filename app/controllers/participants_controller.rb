@@ -2,7 +2,7 @@ class ParticipantsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_participant, only: %i[ show edit update destroy ]
   before_action :check_participant, only: [:show, :index]
-  before_action :check_owner, only: [:show, :update, :destroy]
+  before_action :check_owner, only: [:show, :update, :destroy, :edit]
 
   # GET /participants or /participants.json
   def index

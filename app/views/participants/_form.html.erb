@@ -1,5 +1,5 @@
-<%= form_with(model: participant) do |form| %>
-  <% if participant.errors.any? %>
+<%= form_with(model: participant) do |f| %>
+<% if participant.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(participant.errors.count, "error") %> prohibited this participant from being saved:</h2>
 
@@ -10,50 +10,47 @@
       </ul>
     </div>
   <% end %>
+<div class="card">
+  <div class="card-body">
 
-  <div class="field">
-    <%= form.label :firstname %>
-    <%= form.text_field :firstname %>
+    <div class="mb-3">
+      <%= f.label :firstname, { class: "form-label"} %>
+      <%= f.text_field :firstname, { class: "form-control", placeholder: "Adınız" } %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :familyname, { class: "form-label"} %>
+      <%= f.text_field :familyname, { class: "form-control", placeholder: "Soyadınız" } %>
+    </div>
+
+        <div class="mb-3">
+      <label class="checkbox-inline">
+   <%= f.check_box :privacy_agr %>
+   <%= f.label "Satış sözleşmesi onayı" %>
+  </label>
+  <label class="checkbox-inline">
+   <%= f.check_box :agreement %>
+   <%= f.label "Gizlilik sözleşmesi onayı" %>
+  </label>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :eth_adress, { class: "form-label"} %>
+      <%= f.text_field :eth_adress, { class: "form-control", placeholder: "Ethereum cüzdan adresiniz" } %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :eth_tx, { class: "form-label"} %>
+      <%= f.text_field :eth_tx, { class: "form-control", placeholder: "Etheresum işlem ID'si(TX ID)" } %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :cont_amount, { class: "form-label"} %>
+      <%= f.number_field :cont_amount, { class: "form-control", placeholder: "Satın alma miktarı(USDT)" } %>
+    </div>
+
+    <%= f.submit "Submit", class: "btn btn-primary" %>
+
   </div>
-
-  <div class="field">
-    <%= form.label :familyname %>
-    <%= form.text_field :familyname %>
-  </div>
-
-  <div class="field">
-    <%= form.label :kyc_approved %>
-    <%= form.check_box :kyc_approved %>
-  </div>
-
-  <div class="field">
-    <%= form.label :agreement %>
-    <%= form.check_box :agreement %>
-  </div>
-
-  <div class="field">
-    <%= form.label :privacy_agr %>
-    <%= form.check_box :privacy_agr %>
-  </div>
-
-  <div class="field">
-    <%= form.label :eth_adress %>
-    <%= form.text_field :eth_adress %>
-  </div>
-
-  <div class="field">
-    <%= form.label :cont_amount %>
-    <%= form.number_field :cont_amount %>
-  </div>
-
-  <div class="field">
-    <%= form.label :eth_tx %>
-    <%= form.text_field :eth_tx %>
-  </div>
-
-
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+</div>
 <% end %>

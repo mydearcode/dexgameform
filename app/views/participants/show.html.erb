@@ -1,28 +1,37 @@
 <p id="notice"><%= notice %></p>
 
+<h1> Katılımcı Bilgileri</h1>
+<h3><%= @participant.firstname + " " + @participant.familyname %></h3>
+
+
+
 <p>
-  <strong>Firstname:</strong>
-  <%= @participant.firstname %>
+  <strong>Kyc:</strong>
+  <%if @participant.kyc_approved %>
+  <p class="text-success">Onaylandı</p>
+  <% else %>
+  <p class="text-danger">Onaylanmadı</p>
+  <% end %>
 </p>
 
 <p>
-  <strong>Familyname:</strong>
-  <%= @participant.familyname %>
+  <strong>Satış Sözleşmesi:</strong>
+  <%if @participant.agreement %>
+  <p class="text-success">İmzalandı</p>
+  <% else %>
+  <p class="text-danger">İmzalanmadı</p>
+  <% end %>
 </p>
 
-<p>
-  <strong>Kyc approved:</strong>
-  <%= @participant.kyc_approved %>
-</p>
 
 <p>
-  <strong>Agreement:</strong>
-  <%= @participant.agreement %>
-</p>
-
-<p>
-  <strong>Privacy agr:</strong>
-  <%= @participant.privacy_agr %>
+  <strong>Gizlilik Sözleşmesi</strong>
+  
+  <%if @participant.privacy_agr %>
+  <p class="text-success">İmzalandı</p>
+  <% else %>
+  <p class="text-danger">İmzalanmadı</p>
+  <% end %>
 </p>
 
 <p>
@@ -41,7 +50,7 @@
 </p>
 
 <p>
-  <strong>User:</strong>
+  <strong>User ID:</strong>
   <%= @participant.user_id %>
 </p>
 
