@@ -54,5 +54,12 @@
   <%= @participant.user_id %>
 </p>
 
-<%= link_to 'Edit', edit_participant_path(@participant) %> |
-<%= link_to 'Back', participants_path %>
+<%= link_to 'Edit', edit_participant_path(@participant), class: "btn btn-primary" %> |
+<%= link_to 'Back', participants_path, class: "btn btn-default" %>
+<% if current_user.admin?%>
+          <% if @participant.kyc_approved?%>          
+             <td><%= link_to 'Onayı kaldır', approve_participant_path(@participant), class: "btn btn-warning", method: :put %></td>        
+          <% else %>
+            <td><%= link_to 'Onayla', approve_participant_path(@participant), class: "btn btn-success", method: :put %></td>
+          <% end %>
+        <% end %>

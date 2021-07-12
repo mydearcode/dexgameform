@@ -30,9 +30,16 @@
         <td><%= participant.cont_amount %></td>
         <td><%= participant.eth_tx %></td>
         <td><%= participant.user_id %></td>
-        <td><%= link_to 'Show', participant %></td>
-        <td><%= link_to 'Edit', edit_participant_path(participant) %></td>
-        <td><%= link_to 'Destroy', participant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', participant, class: "btn btn-info" %></td>
+        <td><%= link_to 'Edit', edit_participant_path(participant), class: "btn btn-primary" %></td>
+        <td><%= link_to 'Destroy', participant, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+        <% if current_user.admin?%>
+          <% if participant.kyc_approved?%>          
+             <td><%= link_to 'Onayı kaldır', approve_participant_path(participant), class: "btn btn-warning", method: :put %></td>        
+          <% else %>
+            <td><%= link_to 'Onayla', approve_participant_path(participant), class: "btn btn-success", method: :put %></td>
+          <% end %>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

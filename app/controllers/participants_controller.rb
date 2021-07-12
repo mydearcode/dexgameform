@@ -1,6 +1,6 @@
 class ParticipantsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_participant, only: %i[ show edit update destroy ]
+  before_action :set_participant, only: %i[ show edit update destroy, approve ]
   before_action :check_participant, only: [:show, :index]
   before_action :check_owner, only: [:show, :update, :destroy, :edit]
 
@@ -65,12 +65,27 @@ class ParticipantsController < ApplicationController
 
   # DELETE /participants/1 or /participants/1.json
   def destroy
-    @participant.destroy
+    if current_user.admin?
+      @participant.destroy
     respond_to do |format|
       format.html { redirect_to participants_url, notice: "Participant was successfully destroyed." }
       format.json { head :no_content }
-    end
+      end
+    end    
   end
+
+  def approve
+    
+    if @participant.kyc_approved?
+      @participant.update_attribute :kyc_approved, false if current_user.admin?
+      redirect_to @participant
+    else
+      @participant.update_attribute(:kyc_approved, true) if current_user.admin?
+      redirect_to @participant
+    end
+    
+  end
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -95,5 +110,8 @@ class ParticipantsController < ApplicationController
         redirect_to current_user.participant
       end
     end
+
+    
+    
 
 end
